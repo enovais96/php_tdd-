@@ -1,0 +1,8 @@
+php:
+  container_name: projeto-1-estudo
+  build: .
+  ports:
+   - "9010:80"
+   - "443:443"
+  volumes:
+   - ./www:/var/www/html
