@@ -65,4 +65,56 @@ class AvaliadorTest extends TestCase
 
     }
 
+    public function testMenorValorCrescente(){
+
+        //Preparação do teste
+        //Arrange or Given
+        $leilao = new Leilao('HB20 2015');
+
+        $maria = new Usuario('Maria');
+        $joao = new Usuario('João');
+
+        $leilao->recebeLance(new Lance($joao, 2200));
+        $leilao->recebeLance(new Lance($joao, 2500));
+
+        $leiloeiro = new Avaliador();
+
+        //Executa o código testado
+        //Act or When
+        $leiloeiro->avalia($leilao);
+
+        $menorValor = $leiloeiro->getMenorValor();
+
+        //Validação se a saída é a esperada
+        //Assert or Then
+        self::assertEquals(2200,$menorValor);
+
+    }
+    
+    public function testMenorValorDecrescente(){
+
+        //Preparação do teste
+        //Arrange or Given
+        $leilao = new Leilao('HB20 2015');
+
+        $maria = new Usuario('Maria');
+        $joao = new Usuario('João');
+
+        $leilao->recebeLance(new Lance($joao, 2500));
+        $leilao->recebeLance(new Lance($joao, 2200));
+
+        $leiloeiro = new Avaliador();
+
+        //Executa o código testado
+        //Act or When
+        $leiloeiro->avalia($leilao);
+
+        $menorValor = $leiloeiro->getMenorValor();
+
+        //Validação se a saída é a esperada
+        //Assert or Then
+        self::assertEquals(2200,$menorValor);
+
+    }
+
 }
