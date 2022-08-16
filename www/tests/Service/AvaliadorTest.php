@@ -12,6 +12,11 @@ use Alura\Leilao\Service\Avaliador;
 
 class AvaliadorTest extends TestCase
 {
+    private $leiloeiro;
+
+    protected function setUp() : void {
+        $this->leiloeiro = new Avaliador();
+    }
     /**
      * @dataProvider leilaoEmOrdemCrescente
      * @dataProvider leilaoEmOrdemDecrescente
@@ -19,11 +24,9 @@ class AvaliadorTest extends TestCase
      */
     public function testMaiorValor(Leilao $leilao){
 
-        $leiloeiro = new Avaliador();
+        $this->leiloeiro->avalia($leilao);
 
-        $leiloeiro->avalia($leilao);
-
-        $maiorValor = $leiloeiro->getMaiorValor();
+        $maiorValor = $this->leiloeiro->getMaiorValor();
 
         self::assertEquals(2000,$maiorValor);
     }
@@ -34,11 +37,9 @@ class AvaliadorTest extends TestCase
      */
     public function testMenorValor(Leilao $leilao){
 
-        $leiloeiro = new Avaliador();
+        $this->leiloeiro->avalia($leilao);
 
-        $leiloeiro->avalia($leilao);
-
-        $menorValor = $leiloeiro->getMenorValor();
+        $menorValor = $this->leiloeiro->getMenorValor();
 
         self::assertEquals(1200,$menorValor);
 
@@ -50,10 +51,9 @@ class AvaliadorTest extends TestCase
      */
     public function testTresMaioresValores(Leilao $leilao){
 
-        $avaliador = new Avaliador();
-        $avaliador->avalia($leilao);
+        $this->leiloeiro->avalia($leilao);
 
-        $maiores = $avaliador->getMaioresLances();
+        $maiores = $this->leiloeiro->getMaioresLances();
 
         static::assertCount(3, $maiores);
         static::assertEquals(2000, $maiores[0]->getValor());
