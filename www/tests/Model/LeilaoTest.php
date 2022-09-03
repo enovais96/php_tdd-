@@ -14,6 +14,17 @@ class LeilaoTest extends TestCase
     private $joao;
     private $ana;
 
+    public function testNaoReceberLancesRepetidos(){
+        $leilao = new Leilao('HB20');
+        $this->criandoUsuarios();
+
+        $leilao->recebeLance(new Lance($this->ana, 1000));
+        $leilao->recebeLance(new Lance($this->ana, 1500));
+
+        static::assertCount(1, $leilao->getLances());
+        static::assertEquals(1000, $leilao->getLances()[0]->getValor());
+    }
+
     /**
      * @dataProvider geraLances
      */
