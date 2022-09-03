@@ -1,3 +1,4 @@
 vendor/
 .idea/
 www/composer.lock
+www/tmp
