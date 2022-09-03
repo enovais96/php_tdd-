@@ -13,6 +13,10 @@ use Alura\Leilao\Service\Avaliador;
 class AvaliadorTest extends TestCase
 {
     private $leiloeiro;
+    private $eduardo;
+    private $maria;
+    private $joao;
+    private $ana;
 
     protected function setUp() : void {
         $this->leiloeiro = new Avaliador();
@@ -63,49 +67,44 @@ class AvaliadorTest extends TestCase
 
     public function leilaoEmOrdemCrescente(){
         $leilao = new Leilao('HB20');
+        $this->criandoUsuarios();
 
-        $eduardo = new Usuario('Eduardo');
-        $maria = new Usuario('Maria');
-        $joao = new Usuario('João');
-        $ana = new Usuario('Ana');
-
-        $leilao->recebeLance(new Lance($joao, 1200));
-        $leilao->recebeLance(new Lance($maria, 1500));
-        $leilao->recebeLance(new Lance($ana, 1800));
-        $leilao->recebeLance(new Lance($eduardo, 2000));
+        $leilao->recebeLance(new Lance($this->joao, 1200));
+        $leilao->recebeLance(new Lance($this->maria, 1500));
+        $leilao->recebeLance(new Lance($this->ana, 1800));
+        $leilao->recebeLance(new Lance($this->eduardo, 2000));
 
         return [[$leilao]];
     }
 
     public function leilaoEmOrdemDecrescente(){
         $leilao = new Leilao('HB20');
+        $this->criandoUsuarios();
 
-        $eduardo = new Usuario('Eduardo');
-        $maria = new Usuario('Maria');
-        $joao = new Usuario('João');
-        $ana = new Usuario('Ana');
-
-        $leilao->recebeLance(new Lance($eduardo, 2000));
-        $leilao->recebeLance(new Lance($ana, 1800));
-        $leilao->recebeLance(new Lance($maria, 1500));
-        $leilao->recebeLance(new Lance($joao, 1200));
+        $leilao->recebeLance(new Lance($this->eduardo, 2000));
+        $leilao->recebeLance(new Lance($this->ana, 1800));
+        $leilao->recebeLance(new Lance($this->maria, 1500));
+        $leilao->recebeLance(new Lance($this->joao, 1200));
 
         return [[$leilao]];
     }
 
     public function leilaoEmOrdemAleatoria(){
         $leilao = new Leilao('HB20');
+        $this->criandoUsuarios();
 
-        $eduardo = new Usuario('Eduardo');
-        $maria = new Usuario('Maria');
-        $joao = new Usuario('João');
-        $ana = new Usuario('Ana');
-
-        $leilao->recebeLance(new Lance($maria, 1500));
-        $leilao->recebeLance(new Lance($eduardo, 2000));
-        $leilao->recebeLance(new Lance($joao, 1200));
-        $leilao->recebeLance(new Lance($ana, 1800));
+        $leilao->recebeLance(new Lance($this->maria, 1500));
+        $leilao->recebeLance(new Lance($this->eduardo, 2000));
+        $leilao->recebeLance(new Lance($this->joao, 1200));
+        $leilao->recebeLance(new Lance($this->ana, 1800));
 
         return [[$leilao]];
+    }
+
+    protected function criandoUsuarios(){
+        $this->eduardo = new Usuario('Eduardo');
+        $this->maria = new Usuario('Maria');
+        $this->joao = new Usuario('João');
+        $this->ana = new Usuario('Ana');
     }
 }
