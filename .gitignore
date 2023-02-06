@@ -2,3 +2,4 @@ vendor/
 .idea/
 www/composer.lock
 www/tmp
+www/.phpunit.result.cache
