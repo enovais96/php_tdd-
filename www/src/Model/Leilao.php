@@ -8,11 +8,14 @@ class Leilao
     private $lances;
     /** @var string */
     private $descricao;
+    /** @var bool */
+    private $finalizado;
 
     public function __construct(string $descricao)
     {
         $this->descricao = $descricao;
         $this->lances = [];
+        $this->finalizado = false;
     }
 
     public function recebeLance(Lance $lance)
@@ -47,6 +50,14 @@ class Leilao
         $ultimoUsuario = $this->lances[count($this->lances) - 1];
         return $lance->getUsuario() == $ultimoUsuario->getUsuario();
     }
+
+    public function finaliza(){
+        $this->finalizado = true;
+    }
+
+    public function estaFinalizado() : bool {
+        return $this->finalizado;
+    } 
 
     private function quantidadeLancesPorUsuario(Usuario $usuario) {
         $totalLancesUsuario = array_reduce($this->lances, 
