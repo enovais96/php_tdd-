@@ -36,6 +36,27 @@ class LeilaoTest extends TestCase
         }
     }
 
+    public function testMaximoLancesPorPessoa(){
+        $leilao = new Leilao('HB20');
+        $this->criandoUsuarios();
+
+        $leilao->recebeLance(new Lance($this->eduardo, 1000));
+        $leilao->recebeLance(new Lance($this->maria, 1500));
+        $leilao->recebeLance(new Lance($this->eduardo, 2000));
+        $leilao->recebeLance(new Lance($this->maria, 2500));
+        $leilao->recebeLance(new Lance($this->eduardo, 3000));
+        $leilao->recebeLance(new Lance($this->maria, 3500));
+        $leilao->recebeLance(new Lance($this->eduardo, 4000));
+        $leilao->recebeLance(new Lance($this->maria, 4500));
+        $leilao->recebeLance(new Lance($this->eduardo, 5000));
+        $leilao->recebeLance(new Lance($this->maria, 5500));
+
+        $leilao->recebeLance(new Lance($this->eduardo, 6000));
+
+        static::assertCount(10, $leilao->getLances());
+        static::assertEquals(5500, $leilao->getLances()[array_key_last($leilao->getLances())]->getValor());
+    }
+
     public function geraLances(){
         $leilaoCom3Lances = new Leilao('HB20');
         $this->criandoUsuarios();

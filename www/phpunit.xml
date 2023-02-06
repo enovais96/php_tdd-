@@ -4,10 +4,10 @@
         colors="true">
     <testsuites>
         <testsuite name="unit">
-            <directory>www/tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <logging>
-        <log type="testdox-text" target="www/tmp/log-tests.txt"/>
+        <log type="testdox-text" target="tmp/log-tests.txt"/>
     </logging>
 </phpunit>
