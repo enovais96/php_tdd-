@@ -10,8 +10,8 @@ use Alura\Leilao\Service\Avaliador;
 
 
 
-class AvaliadorTest extends TestCase
-{
+class AvaliadorTest extends TestCase {
+    
     private $leiloeiro;
     private $eduardo;
     private $maria;

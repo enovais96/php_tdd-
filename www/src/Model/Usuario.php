@@ -2,8 +2,7 @@
 
 namespace Alura\Leilao\Model;
 
-class Usuario
-{
+class Usuario {
     /** @var string */
     private $nome;
 

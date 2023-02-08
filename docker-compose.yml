@@ -1,5 +1,5 @@
 php:
-  container_name: projeto-1-estudo
+  container_name: projeto-teste-unitario
   build: .
   ports:
    - "9010:80"

@@ -5,14 +5,13 @@ namespace Alura\Leilao\Service;
 use Alura\Leilao\Model\Leilao;
 use Alura\Leilao\Model\Lance;
 
-class Avaliador
-{
+class Avaliador {
+    
     private $maiorValor = -INF;
     private $menorValor = INF;
     private $maioresLances;
 
-    public function avalia(Leilao $leilao): void
-    {
+    public function avalia(Leilao $leilao): void {
         if($leilao->estaFinalizado()){
             throw new \DomainException('Leilão já finalizado.');
         }
@@ -38,19 +37,15 @@ class Avaliador
         $this->maioresLances = array_slice($lances, 0, 3);
     }
 
-    public function getMaiorValor() : float
-    {
+    public function getMaiorValor() : float {
         return $this->maiorValor;
     }
 
-    public function getMenorValor() : float
-    {
+    public function getMenorValor() : float {
         return $this->menorValor;
     }
 
-
-    public function getMaioresLances() :array
-    {
+    public function getMaioresLances() :array {
         return $this->maioresLances;
     }
 }

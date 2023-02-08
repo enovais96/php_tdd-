@@ -2,8 +2,7 @@
 
 namespace Alura\Leilao\Model;
 
-class Leilao
-{
+class Leilao {
     /** @var Lance[] */
     private $lances;
     /** @var string */
@@ -11,15 +10,13 @@ class Leilao
     /** @var bool */
     private $finalizado;
 
-    public function __construct(string $descricao)
-    {
+    public function __construct(string $descricao){
         $this->descricao = $descricao;
         $this->lances = [];
         $this->finalizado = false;
     }
 
-    public function recebeLance(Lance $lance)
-    {
+    public function recebeLance(Lance $lance){
         if (!empty($this->lances) && $this->lanceDoUltimoUsuario($lance)){
             throw new \DomainException('Usuário não pode dar dois lances seguidos.');
         }
@@ -36,8 +33,7 @@ class Leilao
     /**
      * @return Lance[]
      */
-    public function getLances(): array
-    {
+    public function getLances(): array {
         return $this->lances;
     }
 
@@ -45,8 +41,7 @@ class Leilao
      * @param Lance $lance
      * @return bool
      */
-    public function lanceDoUltimoUsuario(Lance $lance): bool
-    {
+    public function lanceDoUltimoUsuario(Lance $lance): bool {
         $ultimoUsuario = $this->lances[count($this->lances) - 1];
         return $lance->getUsuario() == $ultimoUsuario->getUsuario();
     }
@@ -55,11 +50,18 @@ class Leilao
         $this->finalizado = true;
     }
 
+    /**
+     * @return bool
+     */
     public function estaFinalizado() : bool {
         return $this->finalizado;
     } 
 
-    private function quantidadeLancesPorUsuario(Usuario $usuario) {
+    /**
+     * @param Usuario $usuario
+     * @return int
+     */
+    private function quantidadeLancesPorUsuario(Usuario $usuario): int {
         $totalLancesUsuario = array_reduce($this->lances, 
             function (int $totalAcumulado, Lance $lanceAtual) use ($usuario) {
                 if ($lanceAtual->getUsuario() == $usuario){

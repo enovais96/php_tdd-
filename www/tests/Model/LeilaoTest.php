@@ -7,8 +7,8 @@ use Alura\Leilao\Model\Leilao;
 use Alura\Leilao\Model\Usuario;
 use PHPUnit\Framework\TestCase;
 
-class LeilaoTest extends TestCase
-{
+class LeilaoTest extends TestCase {
+    
     private $eduardo;
     private $maria;
     private $joao;
